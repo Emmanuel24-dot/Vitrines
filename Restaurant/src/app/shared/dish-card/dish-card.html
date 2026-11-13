@@ -1,0 +1,48 @@
+@let d = dish();
+<article class="card">
+  <div class="card__visual" [attr.data-category]="d.category">
+    @if (d.image) {
+      <img [src]="d.image" [alt]="d.name" loading="lazy" />
+    } @else {
+      <span class="card__emoji" aria-hidden="true">{{ d.emoji }}</span>
+    }
+    @if (d.popular) {
+      <span class="card__ribbon">Coup de cœur</span>
+    }
+  </div>
+
+  <div class="card__body">
+    <h3>{{ d.name }}</h3>
+    @if (d.localName) {
+      <p class="card__local">{{ d.localName }}</p>
+    }
+    <p class="card__desc">{{ d.description }}</p>
+
+    @if (d.spicy || d.vegetarian) {
+      <ul class="card__tags">
+        @if (d.spicy) {
+          <li class="tag tag--spicy">🌶️ Pimenté</li>
+        }
+        @if (d.vegetarian) {
+          <li class="tag tag--veggie">🌿 Végétarien</li>
+        }
+      </ul>
+    }
+
+    <div class="card__footer">
+      <span class="card__price">{{ d.price | fcfa }}</span>
+
+      @if (quantity() === 0) {
+        <button type="button" class="add-btn" (click)="cart.add(d.id)">
+          <span aria-hidden="true">+</span> Ajouter
+        </button>
+      } @else {
+        <div class="stepper" role="group" [attr.aria-label]="'Quantité de ' + d.name">
+          <button type="button" (click)="cart.decrement(d.id)" aria-label="Retirer un">−</button>
+          <span aria-live="polite">{{ quantity() }}</span>
+          <button type="button" (click)="cart.add(d.id)" aria-label="Ajouter un">+</button>
+        </div>
+      }
+    </div>
+  </div>
+</article>

@@ -1,0 +1,145 @@
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="eyebrow">Woézon ! Bienvenue</span>
+      <h1>Le vrai goût du Togo, <span class="highlight">livré chez vous</span>.</h1>
+      <p>
+        Akoumé, fufu, ayimolou, koklo mémé… Une cuisine togolaise généreuse, préparée chaque jour
+        à {{ restaurant.city }} avec des produits du marché.
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/menu" class="btn btn-primary">Voir le menu</a>
+        <a [href]="whatsapp" target="_blank" rel="noopener" class="btn btn-outline">
+          Commander sur WhatsApp
+        </a>
+      </div>
+      <ul class="hero__facts">
+        <li><strong>20+</strong><span>plats maison</span></li>
+        <li>
+          <strong>{{ restaurant.delivery.freeFrom | fcfa }}</strong>
+          <span>livraison offerte dès ce montant</span>
+        </li>
+        <li><strong>7j/7</strong><span>à votre service</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="plate">
+        <span class="plate__main">🍲</span>
+        <span class="plate__orbit plate__orbit--1">🌶️</span>
+        <span class="plate__orbit plate__orbit--2">🍗</span>
+        <span class="plate__orbit plate__orbit--3">🌽</span>
+        <span class="plate__orbit plate__orbit--4">🍹</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Catégories -->
+<section class="section categories">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">La carte</span>
+      <h2>Une table pour chaque envie</h2>
+      <p>Des grands classiques du dimanche aux douceurs des marchés de Lomé.</p>
+    </div>
+    <div class="categories__grid">
+      @for (category of categories; track category.id) {
+        <a class="category" routerLink="/menu" [queryParams]="{ categorie: category.id }">
+          <span class="category__emoji" aria-hidden="true">{{ category.emoji }}</span>
+          <h3>{{ category.label }}</h3>
+          <p>{{ category.description }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Plats vedettes -->
+<section class="section featured">
+  <div class="container">
+    <div class="featured__head">
+      <div class="section-head">
+        <span class="eyebrow">Les coups de cœur</span>
+        <h2>Ce que Lomé commande le plus</h2>
+      </div>
+      <a routerLink="/menu" class="btn btn-outline">Tout le menu →</a>
+    </div>
+    <div class="dish-grid">
+      @for (dish of featured; track dish.id) {
+        <app-dish-card [dish]="dish" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Promesses -->
+<section class="section promises">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Notre promesse</span>
+      <h2>Comme à la maison, sans faire la queue</h2>
+    </div>
+    <div class="promises__grid">
+      @for (promise of promises; track promise.title) {
+        <div class="promise">
+          <span class="promise__icon" aria-hidden="true">{{ promise.icon }}</span>
+          <h3>{{ promise.title }}</h3>
+          <p>{{ promise.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Comment commander -->
+<section class="section steps">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Simple comme bonjour</span>
+      <h2>Commander en 3 étapes</h2>
+    </div>
+    <ol class="steps__list">
+      @for (step of steps; track step.title; let i = $index) {
+        <li class="step">
+          <span class="step__num">{{ i + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- Témoignages -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Ils en parlent</span>
+      <h2>Akpé ! Merci à nos clients</h2>
+    </div>
+    <div class="testimonials__grid">
+      @for (t of testimonials; track t.author) {
+        <figure class="testimonial">
+          <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+          <blockquote>« {{ t.quote }} »</blockquote>
+          <figcaption>
+            <strong>{{ t.author }}</strong> · {{ t.place }}
+          </figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Appel à l'action -->
+<section class="cta">
+  <div class="container cta__inner">
+    <div>
+      <h2>Une petite faim ?</h2>
+      <p>Votre akoumé est à quelques clics. Livraison dans tout le {{ restaurant.delivery.zone }}.</p>
+    </div>
+    <a routerLink="/menu" class="btn btn-accent">Je commande</a>
+  </div>
+</section>

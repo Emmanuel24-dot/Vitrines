@@ -1,0 +1,70 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Notre carte</span>
+    <h1>Le menu</h1>
+    <p>Tous nos plats sont préparés le jour même. Les prix sont en francs CFA.</p>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="container toolbar__inner">
+    <nav class="chips" aria-label="Catégories">
+      <a
+        class="chip"
+        routerLink="/menu"
+        [queryParams]="{ categorie: null }"
+        [class.active]="!activeCategory()"
+        >Tout</a
+      >
+      @for (category of categories; track category.id) {
+        <a
+          class="chip"
+          routerLink="/menu"
+          [queryParams]="{ categorie: category.id }"
+          [class.active]="activeCategory() === category.id"
+          >{{ category.emoji }} {{ category.label }}</a
+        >
+      }
+    </nav>
+
+    <label class="search">
+      <span class="visually-hidden">Rechercher un plat</span>
+      <input
+        type="search"
+        placeholder="Rechercher un plat…"
+        [value]="search()"
+        (input)="onSearch($event)"
+      />
+    </label>
+  </div>
+</div>
+
+<div class="container menu">
+  @for (section of sections(); track section.category.id) {
+    <section class="menu__section">
+      <header class="menu__section-head">
+        <h2>{{ section.category.emoji }} {{ section.category.label }}</h2>
+        <p>{{ section.category.description }}</p>
+      </header>
+      <div class="dish-grid">
+        @for (dish of section.dishes; track dish.id) {
+          <app-dish-card [dish]="dish" />
+        }
+      </div>
+    </section>
+  } @empty {
+    <div class="empty">
+      <p class="empty__emoji" aria-hidden="true">🥣</p>
+      <h2>Aucun plat ne correspond</h2>
+      <p>Essayez un autre mot, ou parcourez toute la carte.</p>
+      <a routerLink="/menu" class="btn btn-primary" (click)="search.set('')">Voir tout le menu</a>
+    </div>
+  }
+</div>
+
+@if (cart.count() > 0) {
+  <a routerLink="/commande" class="floating-cart">
+    <span>🛒 {{ cart.count() }} article{{ cart.count() > 1 ? 's' : '' }}</span>
+    <strong>{{ cart.subtotal() | fcfa }} →</strong>
+  </a>
+}

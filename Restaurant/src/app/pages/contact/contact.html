@@ -1,0 +1,89 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Contact</span>
+    <h1>On se parle ?</h1>
+    <p>Une question, un événement à organiser, une commande traiteur ? Écrivez-nous.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact">
+    <div class="info">
+      <a class="info__card" [href]="phoneHref">
+        <span aria-hidden="true">📞</span>
+        <div>
+          <strong>Téléphone</strong>
+          <p>{{ restaurant.phone }}</p>
+        </div>
+      </a>
+      <a class="info__card" [href]="whatsapp" target="_blank" rel="noopener">
+        <span aria-hidden="true">💬</span>
+        <div>
+          <strong>WhatsApp</strong>
+          <p>Réponse rapide, 7j/7</p>
+        </div>
+      </a>
+      <a class="info__card" [href]="'mailto:' + restaurant.email">
+        <span aria-hidden="true">✉️</span>
+        <div>
+          <strong>E-mail</strong>
+          <p>{{ restaurant.email }}</p>
+        </div>
+      </a>
+      <a class="info__card" [href]="mapLink" target="_blank" rel="noopener">
+        <span aria-hidden="true">📍</span>
+        <div>
+          <strong>Adresse</strong>
+          <p>{{ restaurant.address }}</p>
+        </div>
+      </a>
+
+      <div class="hours">
+        <h2>Horaires d'ouverture</h2>
+        <dl>
+          @for (slot of restaurant.hours; track slot.days) {
+            <div>
+              <dt>{{ slot.days }}</dt>
+              <dd>{{ slot.time }}</dd>
+            </div>
+          }
+        </dl>
+      </div>
+    </div>
+
+    <form class="panel" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <h2>Envoyez-nous un message</h2>
+
+      @if (sent()) {
+        <p class="notice">Merci ! Votre message s'est ouvert dans WhatsApp, il ne reste qu'à l'envoyer.</p>
+      }
+
+      <div class="field">
+        <label for="c-name">Nom</label>
+        <input id="c-name" formControlName="name" autocomplete="name" />
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <span class="error">Indiquez votre nom.</span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="c-subject">Sujet</label>
+        <select id="c-subject" formControlName="subject">
+          @for (subject of subjects; track subject) {
+            <option [value]="subject">{{ subject }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="c-message">Message</label>
+        <textarea id="c-message" formControlName="message" rows="5"></textarea>
+        @if (form.controls.message.touched && form.controls.message.invalid) {
+          <span class="error">Votre message doit contenir au moins 10 caractères.</span>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary">Envoyer via WhatsApp</button>
+    </form>
+  </div>
+</section>

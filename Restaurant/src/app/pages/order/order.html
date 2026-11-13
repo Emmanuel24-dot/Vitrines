@@ -1,0 +1,163 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Ma commande</span>
+    <h1>Votre panier</h1>
+    <p>Vérifiez vos plats, puis envoyez la commande : nous vous rappelons pour confirmer.</p>
+  </div>
+</section>
+
+<div class="container order">
+  @if (sentLink(); as link) {
+    <div class="panel success">
+      <p class="success__emoji" aria-hidden="true">🎉</p>
+      <h2>Akpé ! Votre commande est prête à partir</h2>
+      <p>
+        WhatsApp s'est ouvert avec le récapitulatif : il ne vous reste qu'à appuyer sur
+        <strong>Envoyer</strong>. Nous vous confirmons le délai dans la foulée.
+      </p>
+      <div class="success__actions">
+        <a [href]="link" target="_blank" rel="noopener" class="btn btn-outline">
+          Rouvrir WhatsApp
+        </a>
+        <button type="button" class="btn btn-primary" (click)="finish()">
+          C'est envoyé, vider le panier
+        </button>
+      </div>
+    </div>
+  } @else if (cart.count() === 0) {
+    <div class="panel empty">
+      <p class="empty__emoji" aria-hidden="true">🍽️</p>
+      <h2>Votre panier est vide</h2>
+      <p>Un petit ayimolou, un koklo mémé ? Le menu vous attend.</p>
+      <a routerLink="/menu" class="btn btn-primary">Découvrir le menu</a>
+    </div>
+  } @else {
+    <div class="order__grid">
+      <section class="panel">
+        <div class="panel__head">
+          <h2>Vos plats</h2>
+          <a routerLink="/menu" class="link">+ Ajouter d'autres plats</a>
+        </div>
+
+        <ul class="lines">
+          @for (line of cart.items(); track line.dish.id) {
+            <li class="line">
+              <span class="line__emoji" aria-hidden="true">{{ line.dish.emoji }}</span>
+              <div class="line__info">
+                <strong>{{ line.dish.name }}</strong>
+                <span>{{ line.dish.price | fcfa }} l'unité</span>
+              </div>
+              <div class="stepper" role="group" [attr.aria-label]="'Quantité de ' + line.dish.name">
+                <button type="button" (click)="cart.decrement(line.dish.id)" aria-label="Retirer un">
+                  −
+                </button>
+                <span>{{ line.quantity }}</span>
+                <button type="button" (click)="cart.add(line.dish.id)" aria-label="Ajouter un">
+                  +
+                </button>
+              </div>
+              <strong class="line__total">{{ line.dish.price * line.quantity | fcfa }}</strong>
+              <button
+                type="button"
+                class="line__remove"
+                (click)="cart.remove(line.dish.id)"
+                [attr.aria-label]="'Supprimer ' + line.dish.name"
+              >
+                ✕
+              </button>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <form class="panel checkout" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <h2>Vos coordonnées</h2>
+
+        <div class="mode" role="radiogroup" aria-label="Mode de retrait">
+          <label [class.active]="mode() === 'livraison'">
+            <input type="radio" formControlName="mode" value="livraison" />
+            🛵 Livraison
+          </label>
+          <label [class.active]="mode() === 'emporter'">
+            <input type="radio" formControlName="mode" value="emporter" />
+            🛍️ À emporter
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="name">Nom</label>
+          <input id="name" formControlName="name" autocomplete="name" />
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            <span class="error">Indiquez votre nom.</span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="phone">Téléphone</label>
+          <input
+            id="phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            placeholder="+228 90 00 00 00"
+          />
+          @if (form.controls.phone.touched && form.controls.phone.invalid) {
+            <span class="error">Indiquez un numéro valide.</span>
+          }
+        </div>
+
+        @if (mode() === 'livraison') {
+          <div class="field">
+            <label for="address">Adresse de livraison</label>
+            <input
+              id="address"
+              formControlName="address"
+              autocomplete="street-address"
+              placeholder="Quartier, repère (ex. Tokoin, près de la pharmacie…)"
+            />
+            @if (form.controls.address.touched && form.controls.address.invalid) {
+              <span class="error">Indiquez où vous livrer.</span>
+            }
+          </div>
+        }
+
+        <div class="field">
+          <label for="note">Précisions (facultatif)</label>
+          <textarea
+            id="note"
+            formControlName="note"
+            rows="3"
+            placeholder="Pas trop pimenté, heure souhaitée…"
+          ></textarea>
+        </div>
+
+        <dl class="summary">
+          <div>
+            <dt>Sous-total</dt>
+            <dd>{{ cart.subtotal() | fcfa }}</dd>
+          </div>
+          @if (mode() === 'livraison') {
+            <div>
+              <dt>Livraison</dt>
+              <dd>{{ deliveryFee() ? (deliveryFee() | fcfa) : 'Offerte' }}</dd>
+            </div>
+          }
+          <div class="summary__total">
+            <dt>Total</dt>
+            <dd>{{ total() | fcfa }}</dd>
+          </div>
+        </dl>
+
+        @if (mode() === 'livraison' && missingForFreeDelivery() > 0) {
+          <p class="hint">
+            Plus que <strong>{{ missingForFreeDelivery() | fcfa }}</strong> pour la livraison
+            offerte !
+          </p>
+        }
+
+        <button type="submit" class="btn btn-primary submit">Envoyer ma commande sur WhatsApp</button>
+        <p class="hint">Paiement à la livraison ou au retrait (espèces, T-Money, Flooz).</p>
+      </form>
+    </div>
+  }
+</div>

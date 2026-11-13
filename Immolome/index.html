@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImmoLomé — Votre partenaire immobilier à Lomé</title>
+<meta name="description" content="ImmoLomé accompagne l'achat, la vente et la location de biens immobiliers à Lomé, Togo. Agence immobilière moderne, sérieuse et locale.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="ImmoLomé — Votre partenaire immobilier à Lomé">
+<meta property="og:description" content="Achat, vente, location et gestion immobilière à Lomé. Un accompagnement professionnel et transparent.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "ImmoLomé",
+  "description": "Agence immobilière proposant l'achat, la vente, la location et la gestion de biens à Lomé, Togo.",
+  "areaServed": "Lomé, Togo",
+  "telephone": "+228XXXXXXXX",
+  "email": "contact@immolome.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lomé",
+    "addressCountry": "TG"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a href="#home" class="logo">IMMO<span>LOMÉ</span></a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a href="#home">Accueil</a>
+      <a href="#about">À propos</a>
+      <a href="#services">Nos services</a>
+      <a href="#properties">Nos biens</a>
+      <a href="#why-us">Pourquoi nous</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#" class="btn btn-gold btn-sm wa-link" data-msg="general">
+        <i class="bi bi-whatsapp"></i> Nous contacter
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="mobile-nav" id="mobileNav" aria-label="Navigation mobile">
+  <button class="mobile-close" id="mobileCloseBtn" aria-label="Fermer le menu">&times;</button>
+  <a href="#home">Accueil</a>
+  <a href="#about">À propos</a>
+  <a href="#services">Nos services</a>
+  <a href="#properties">Nos biens</a>
+  <a href="#why-us">Pourquoi nous</a>
+  <a href="#contact">Contact</a>
+  <a href="#" class="btn btn-gold wa-link" data-msg="general"><i class="bi bi-whatsapp"></i> Nous contacter</a>
+</nav>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content reveal is-visible">
+      <span class="hero-tag"><i class="bi bi-geo-alt"></i> Votre partenaire immobilier à Lomé</span>
+      <h1>Votre projet immobilier <em>commence ici.</em></h1>
+      <p>Nous vous accompagnons dans l'achat, la vente et la location de biens immobiliers à Lomé, avec une connaissance fine du marché local et un service sur-mesure.</p>
+      <div class="hero-actions">
+        <a href="#properties" class="btn btn-gold">Découvrir nos biens</a>
+        <a href="#" class="btn btn-outline-light wa-link" data-msg="general">Nous contacter</a>
+      </div>
+    </div>
+
+    <form class="search-bar reveal" id="searchBar">
+      <div class="search-field">
+        <label for="searchType">Que recherchez-vous ?</label>
+        <select id="searchType">
+          <option value="acheter">Acheter</option>
+          <option value="louer">Louer</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label for="searchKind">Type de bien</label>
+        <select id="searchKind">
+          <option>Villa</option>
+          <option>Appartement</option>
+          <option>Maison</option>
+          <option>Terrain</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label for="searchZone">Zone</label>
+        <select id="searchZone">
+          <option>Toutes les zones</option>
+          <option>Agoè</option>
+          <option>Tokoin</option>
+          <option>Adidogomé</option>
+          <option>Baguida</option>
+          <option>Kégué</option>
+          <option>Hedzranawoé</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label for="searchBudget">Budget max.</label>
+        <select id="searchBudget">
+          <option>Sans limite</option>
+          <option>50 000 000 FCFA</option>
+          <option>100 000 000 FCFA</option>
+          <option>200 000 000 FCFA</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-gold">Voir les biens</button>
+    </form>
+  </div>
+</section>
+
+<!-- =========================================================
+     STATS
+     ========================================================= -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-num">+150</div>
+        <div class="stat-label">Biens accompagnés</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">+8</div>
+        <div class="stat-label">Années d'expérience</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">+20</div>
+        <div class="stat-label">Zones couvertes</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num">+300</div>
+        <div class="stat-label">Clients accompagnés</div>
+      </div>
+    </div>
+    <p class="stats-note">Chiffres de démonstration — data-stat-* dans le HTML, à remplacer par vos données réelles.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     À PROPOS
+     ========================================================= -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media blueprint-frame reveal">
+        <span class="bp-tr"></span><span class="bp-br"></span>
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Intérieur moderne d'une villa présentée par ImmoLomé" loading="lazy">
+        <div class="exp-badge">
+          <div class="num">8+</div>
+          <div class="label">Ans d'expertise</div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-head">
+          <span class="eyebrow">À propos de nous</span>
+          <h2>Une expertise immobilière au service de vos projets.</h2>
+          <p>ImmoLomé est une agence immobilière moderne basée à Lomé. Nous accompagnons particuliers et investisseurs avec rigueur, transparence et une connaissance approfondie du marché local.</p>
+        </div>
+        <ul class="about-list">
+          <li><i class="bi bi-check2-circle"></i> Une équipe locale qui connaît chaque quartier de Lomé et ses environs.</li>
+          <li><i class="bi bi-check2-circle"></i> Un accompagnement personnalisé, de la première visite à la signature.</li>
+          <li><i class="bi bi-check2-circle"></i> Une approche transparente sur les prix, les délais et les démarches.</li>
+        </ul>
+        <a href="#services" class="btn btn-outline-navy">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVICES
+     ========================================================= -->
+<section class="section on-beige" id="services">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Nos services</span>
+      <h2>Un accompagnement complet, à chaque étape</h2>
+      <p>De la recherche à la gestion, ImmoLomé vous accompagne dans chaque étape de votre projet immobilier.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="bi bi-key"></i></div>
+        <h3>Achat immobilier</h3>
+        <p>Nous vous accompagnons dans la recherche du bien correspondant à vos besoins et à votre budget.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="bi bi-tag"></i></div>
+        <h3>Vente</h3>
+        <p>Nous vous accompagnons dans la valorisation et la commercialisation de votre bien immobilier.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="bi bi-house-door"></i></div>
+        <h3>Location</h3>
+        <p>Découvrez des biens adaptés à votre budget et à votre projet, partout à Lomé.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="bi bi-briefcase"></i></div>
+        <h3>Gestion immobilière</h3>
+        <p>Confiez la gestion locative de vos biens à une équipe professionnelle et réactive.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="bi bi-chat-square-dots"></i></div>
+        <h3>Conseil immobilier</h3>
+        <p>Un accompagnement personnalisé pour prendre les bonnes décisions à chaque étape.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="bi bi-shield-check"></i></div>
+        <h3>Accompagnement juridique</h3>
+        <p>Nous vous orientons sur les démarches administratives liées à votre transaction.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     NOS BIENS
+     ========================================================= -->
+<section class="section" id="properties">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Nos biens</span>
+      <h2>Quelques biens sélectionnés</h2>
+      <p>Une sélection de biens de démonstration — à remplacer par les annonces réelles de votre agence.</p>
+    </div>
+    <div class="properties-grid" id="propertiesGrid"><!-- injected by main.js --></div>
+    <div class="properties-cta reveal">
+      <a href="#" class="btn btn-outline-navy wa-link" data-msg="general">Voir plus de biens sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GALERIE
+     ========================================================= -->
+<section class="section on-beige" id="gallery">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Galerie</span>
+      <h2>Un aperçu de nos réalisations</h2>
+      <p>Villas, appartements, terrains et intérieurs sélectionnés par nos équipes.</p>
+    </div>
+    <div class="gallery-tabs reveal">
+      <button class="gallery-tab active" data-filter="all">Tout</button>
+      <button class="gallery-tab" data-filter="villas">Villas</button>
+      <button class="gallery-tab" data-filter="appartements">Appartements</button>
+      <button class="gallery-tab" data-filter="terrains">Terrains</button>
+      <button class="gallery-tab" data-filter="interieurs">Intérieurs</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"><!-- injected by main.js --></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     POURQUOI NOUS
+     ========================================================= -->
+<section class="section on-navy" id="why-us">
+  <div class="plan-grid"></div>
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Pourquoi nous choisir</span>
+      <h2>Pourquoi choisir ImmoLomé ?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="bi bi-geo"></i></div>
+        <h3>Expertise locale</h3>
+        <p>Une connaissance fine des quartiers, des prix et des dynamiques du marché à Lomé.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="bi bi-person-heart"></i></div>
+        <h3>Accompagnement personnalisé</h3>
+        <p>Chaque client bénéficie d'un suivi dédié, adapté à son projet et à son budget.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="bi bi-eye"></i></div>
+        <h3>Transparence</h3>
+        <p>Des prix clairs, des délais réalistes et une communication honnête à chaque étape.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="bi bi-clock"></i></div>
+        <h3>Disponibilité</h3>
+        <p>Une équipe réactive, joignable par téléphone et WhatsApp six jours sur sept.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ZONES COUVERTES
+     ========================================================= -->
+<section class="section" id="zones">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Zones couvertes</span>
+      <h2>Nous intervenons à Lomé et ses environs</h2>
+    </div>
+    <div class="zones-grid">
+      <div class="zone-chip reveal"><span>Agoè</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Adidogomé</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Tokoin</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Kégué</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Bè</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Avedji</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Totsi</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Baguida</span><i class="bi bi-geo-alt"></i></div>
+      <div class="zone-chip reveal"><span>Hedzranawoé</span><i class="bi bi-geo-alt"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROCESSUS
+     ========================================================= -->
+<section class="section on-beige" id="process">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Notre méthode</span>
+      <h2>Comment ça marche ?</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <h3>Votre besoin</h3>
+        <p>Nous échangeons sur votre projet, votre budget et vos critères essentiels.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">02</div>
+        <h3>Recherche &amp; analyse</h3>
+        <p>Nous sélectionnons les biens correspondant précisément à votre demande.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">03</div>
+        <h3>Accompagnement</h3>
+        <p>Visites, négociation et démarches : nous vous accompagnons à chaque étape.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">04</div>
+        <h3>Réalisation</h3>
+        <p>Votre projet immobilier se concrétise, en toute sérénité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TÉMOIGNAGES
+     ========================================================= -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Témoignages de démonstration</span>
+      <h2>Ce que disent nos clients</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Un accompagnement sérieux du début à la fin. L'équipe a su comprendre exactement ce que je cherchais.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A.</div>
+          <div>
+            <div class="author-name">Ama K.</div>
+            <div class="author-role">Cliente — Achat à Agoè</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Réactifs et transparents sur les prix. J'ai trouvé mon appartement en location en moins de deux semaines.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">K.</div>
+          <div>
+            <div class="author-name">Kossi M.</div>
+            <div class="author-role">Client — Location à Tokoin</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Une vraie connaissance du terrain. Ils m'ont accompagné pour vendre ma maison au juste prix.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">E.</div>
+          <div>
+            <div class="author-name">Essi T.</div>
+            <div class="author-role">Cliente — Vente à Adidogomé</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA
+     ========================================================= -->
+<section class="section tight">
+  <div class="cta-section reveal">
+    <div class="plan-grid"></div>
+    <h2>Un projet immobilier en tête ?</h2>
+    <p>Que vous souhaitiez acheter, vendre ou louer, notre équipe est à votre écoute.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-gold wa-link" data-msg="general">Parler à un conseiller</a>
+      <a href="#properties" class="btn btn-outline-light">Voir nos biens</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="section-head">
+          <span class="eyebrow">Contact</span>
+          <h2>Parlons de votre projet</h2>
+          <p>Notre équipe vous répond rapidement, par téléphone, WhatsApp ou email.</p>
+        </div>
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="bi bi-telephone"></i></div>
+            <div><h4>Téléphone</h4><p>+228 XX XX XX XX</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="bi bi-whatsapp"></i></div>
+            <div><h4>WhatsApp</h4><p>+228 XX XX XX XX</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="bi bi-envelope"></i></div>
+            <div><h4>Email</h4><p>contact@immolome.com</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="bi bi-geo-alt"></i></div>
+            <div><h4>Adresse</h4><p>Lomé, Togo</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon"><i class="bi bi-clock"></i></div>
+            <div><h4>Horaires</h4><p>Lundi – Samedi, 08h00 – 18h00</p></div>
+          </div>
+        </div>
+        <a href="#" class="btn btn-whatsapp wa-link" style="margin-top:28px" data-msg="general">
+          <i class="bi bi-whatsapp"></i> Contacter sur WhatsApp
+        </a>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Nom</label>
+            <input type="text" id="cf-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-phone">Téléphone</label>
+            <input type="tel" id="cf-phone" name="phone" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Objet</label>
+            <input type="text" id="cf-subject" name="subject" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required></textarea>
+        </div>
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-gold">Envoyer</button>
+          <div class="form-toast" id="formToast"><i class="bi bi-check-circle"></i> Votre message a été envoyé. Nous vous répondrons rapidement.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="logo">IMMO<span>LOMÉ</span></div>
+        <p>Votre partenaire immobilier à Lomé. Achat, vente, location et gestion de biens, en toute confiance.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="wa-link" data-msg="general" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#properties">Nos biens</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Zones couvertes</h5>
+        <ul>
+          <li><a href="#zones">Agoè</a></li>
+          <li><a href="#zones">Tokoin</a></li>
+          <li><a href="#zones">Adidogomé</a></li>
+          <li><a href="#zones">Baguida</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li>+228 XX XX XX XX</li>
+          <li>contact@immolome.com</li>
+          <li>Lomé, Togo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> ImmoLomé. Tous droits réservés.</span>
+      <span class="demo-note">Site de démonstration — contenu et données fictifs.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="#" class="wa-float wa-link" data-msg="general" aria-label="Contacter ImmoLomé sur WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<!-- Property detail modal -->
+<div class="modal-overlay" id="propertyModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalCloseBtn" aria-label="Fermer">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Fermer">&times;</button>
+  <img src="" alt="" id="lightboxImg">
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<header class="header" [class.open]="menuOpen()">
+  <div class="container header__inner">
+    <a routerLink="/" class="brand" (click)="close()">
+      <span class="brand__mark" aria-hidden="true">★</span>
+      <span class="brand__name">Saveurs <em>du Togo</em></span>
+    </a>
+
+    <nav id="main-nav" class="nav" aria-label="Navigation principale">
+      @for (link of links; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          (click)="close()"
+          >{{ link.label }}</a
+        >
+      }
+      <a routerLink="/menu" class="btn btn-primary nav__cta" (click)="close()">Commander</a>
+    </nav>
+
+    <div class="header__actions">
+      <a
+        routerLink="/commande"
+        class="cart-btn"
+        (click)="close()"
+        [attr.aria-label]="'Voir ma commande (' + cart.count() + ' article(s))'"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM7.2 14h9.9a2 2 0 0 0 1.8-1.1l3.6-7A1 1 0 0 0 21.6 4H5.2l-.9-2H1v2h2l3.6 7.6-1.4 2.4A2 2 0 0 0 7 17h12v-2H7.4l.8-1Z"
+          />
+        </svg>
+        @if (cart.count() > 0) {
+          <span class="badge">{{ cart.count() }}</span>
+        }
+      </a>
+
+      <button
+        type="button"
+        class="burger"
+        (click)="toggle()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="main-nav"
+        aria-label="Ouvrir le menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="kente"></div>
+</header>

@@ -1,0 +1,51 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Notre histoire</span>
+    <h1>Une cuisine de famille, ouverte à tous</h1>
+    <p>De la cuisine de nos mamans à votre table, sans rien perdre en chemin.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container story">
+    <div class="story__visual" aria-hidden="true">
+      <span>👩🏾‍🍳</span>
+    </div>
+    <div class="story__text">
+      <h2>Tout a commencé autour d'une marmite</h2>
+      <p>
+        {{ restaurant.name }} est né d'une idée simple : faire goûter à {{ restaurant.city }} la
+        cuisine que l'on mange à la maison le dimanche. L'akoumé bien lisse, la sauce gboma au
+        poisson fumé, le fufu pilé à la main, le koklo mémé qui pique juste ce qu'il faut.
+      </p>
+      <p>
+        Chaque matin, nous partons au marché choisir nos légumes, nos poissons et nos épices. Puis
+        tout se prépare sur place, selon des recettes transmises de génération en génération, du
+        Littoral jusqu'aux Savanes.
+      </p>
+      <p>
+        Que vous soyez Togolais loin de chez vous ou curieux de découvrir nos saveurs, notre porte
+        — et notre WhatsApp — vous sont grands ouverts.
+      </p>
+      <a routerLink="/menu" class="btn btn-primary">Découvrir nos plats</a>
+    </div>
+  </div>
+</section>
+
+<section class="section values">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Ce qui nous guide</span>
+      <h2>Nos valeurs</h2>
+    </div>
+    <div class="values__grid">
+      @for (value of values; track value.title) {
+        <div class="value">
+          <span class="value__icon" aria-hidden="true">{{ value.icon }}</span>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

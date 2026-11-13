@@ -1,0 +1,51 @@
+<footer class="footer">
+  <div class="kente"></div>
+  <div class="container footer__grid">
+    <div>
+      <p class="footer__brand">★ {{ restaurant.name }}</p>
+      <p class="footer__muted">
+        {{ restaurant.tagline }}. Les recettes de nos mamans, préparées chaque jour à
+        {{ restaurant.city }}.
+      </p>
+    </div>
+
+    <div>
+      <h3>Navigation</h3>
+      <ul>
+        <li><a routerLink="/menu">Le menu</a></li>
+        <li><a routerLink="/commande">Ma commande</a></li>
+        <li><a routerLink="/a-propos">Notre histoire</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Horaires</h3>
+      <ul>
+        @for (slot of restaurant.hours; track slot.days) {
+          <li>
+            <span class="footer__muted">{{ slot.days }}</span><br />{{ slot.time }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h3>Nous joindre</h3>
+      <ul>
+        <li>{{ restaurant.address }}</li>
+        <li>
+          <a [href]="'tel:' + restaurant.phone.replaceAll(' ', '')">{{ restaurant.phone }}</a>
+        </li>
+        <li><a [href]="whatsapp" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li>
+          <a [href]="restaurant.socials.facebook" target="_blank" rel="noopener">Facebook</a> ·
+          <a [href]="restaurant.socials.instagram" target="_blank" rel="noopener">Instagram</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    © {{ year }} {{ restaurant.name }} · Akpé na mi, merci de votre visite !
+  </div>
+</footer>

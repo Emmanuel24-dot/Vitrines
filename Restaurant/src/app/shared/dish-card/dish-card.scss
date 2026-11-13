@@ -1,0 +1,184 @@
+:host {
+  display: block;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.card__visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 30%, #fff3c4, var(--yellow));
+
+  &[data-category='plats'] {
+    background: radial-gradient(circle at 30% 30%, #ffe2b8, #e8913a);
+  }
+  &[data-category='grillades'] {
+    background: radial-gradient(circle at 30% 30%, #ffc7b0, #c8452e);
+  }
+  &[data-category='street-food'] {
+    background: radial-gradient(circle at 30% 30%, #fff3c4, #f4c20d);
+  }
+  &[data-category='boissons'] {
+    background: radial-gradient(circle at 30% 30%, #ffc9d4, #b8164a);
+  }
+  &[data-category='desserts'] {
+    background: radial-gradient(circle at 30% 30%, #d7f2c9, #3f9a5c);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.card__emoji {
+  font-size: 4.5rem;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+
+  .card:hover & {
+    transform: scale(1.1) rotate(-6deg);
+  }
+}
+
+.card__ribbon {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--red);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 2px;
+  }
+}
+
+.card__local {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.card__desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card__tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+.tag {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+
+  &--spicy {
+    background: #fde4e7;
+    color: var(--red);
+  }
+
+  &--veggie {
+    background: #e1f3e8;
+    color: var(--green);
+  }
+}
+
+.card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card__price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--green);
+}
+
+.add-btn {
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: var(--green);
+  }
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--sand);
+
+  span {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  button {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--yellow);
+    }
+  }
+}
